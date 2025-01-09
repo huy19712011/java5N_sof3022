@@ -33,4 +33,14 @@ public class StudentRepository {
 
         em.remove(em.find(Student.class, id));
     }
+
+    public Student getStudentById(long id) {
+
+        return em.find(Student.class, id);
+    }
+
+    public void updateStudent(Student student) {
+
+            em.merge(student);
+    }
 }

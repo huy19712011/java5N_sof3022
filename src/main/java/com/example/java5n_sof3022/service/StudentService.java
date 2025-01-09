@@ -31,4 +31,14 @@ public class StudentService {
 
         this.studentRepository.deleteStudentById(id);
     }
+
+    public Student getStudentById(long id) {
+
+            return this.studentRepository.getStudentById(id);
+    }
+
+    public void updateStudent(Student student) {
+
+        this.studentRepository.updateStudent(student);
+    }
 }

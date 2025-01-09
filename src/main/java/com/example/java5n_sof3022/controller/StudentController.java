@@ -65,4 +65,25 @@ public class StudentController {
 
         return "redirect:/students";
     }
+
+    @GetMapping("/students/showFormForUpdate/{id}")
+    public String showFormForUpdate(@PathVariable("id") long id, Model model) {
+
+        // get student from the service
+        Student student = studentService.getStudentById(id);
+
+        // set student as a model attribute to pre-populate the form
+        model.addAttribute("student", student);
+
+        return "views/update_student";
+    }
+
+    @PostMapping("/students/updateStudent")
+    public String updateStudent(@ModelAttribute("student") Student student) {
+
+        // update student to database
+        studentService.updateStudent(student);
+
+        return "redirect:/students";
+    }
 }
