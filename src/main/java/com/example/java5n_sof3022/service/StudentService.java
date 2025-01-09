@@ -21,4 +21,9 @@ public class StudentService {
 
         return studentRepository.getAllStudents();
     }
+
+    public void saveStudent(Student student) {
+
+        this.studentRepository.saveStudent(student);
+    }
 }
