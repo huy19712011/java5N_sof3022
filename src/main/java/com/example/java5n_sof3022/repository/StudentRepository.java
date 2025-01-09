@@ -9,11 +9,9 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-@RequiredArgsConstructor
 public class StudentRepository {
 
     private EntityManager em;
-
     @Autowired
     public StudentRepository(EntityManager em) {
         this.em = em;

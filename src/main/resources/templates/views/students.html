@@ -3,21 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <style>
-        table {
-            border: 1px solid black;
-        }
-    </style>
+    <link th:href="@{/css/main.css}" rel="stylesheet" />
 </head>
 <body>
 <h3>Students</h3>
-<table border="1">
+<table>
     <tr>
+        <th>Id</th>
         <th>Name</th>
         <th>Email</th>
         <th>Phone</th>
     </tr>
     <tr th:each="student: ${students}">
+        <td th:text="${student.id}"></td>
         <td th:text="${student.name}"></td>
         <td th:text="${student.email}"></td>
         <td th:text="${student.phone}"></td>

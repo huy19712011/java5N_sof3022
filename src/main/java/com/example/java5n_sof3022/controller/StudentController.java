@@ -12,11 +12,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Controller
-//@RequiredArgsConstructor
 public class StudentController {
 
     private StudentService studentService;
-
     @Autowired
     public StudentController(StudentService studentService) {
         this.studentService = studentService;
@@ -33,6 +31,6 @@ public class StudentController {
         model.addAttribute("students", students);
 
         // return view name
-        return "students";
+        return "views/students";
     }
 }
