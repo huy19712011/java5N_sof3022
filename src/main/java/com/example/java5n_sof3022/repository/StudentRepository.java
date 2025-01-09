@@ -28,4 +28,9 @@ public class StudentRepository {
 
             em.persist(student);
     }
+
+    public void deleteStudentById(long id) {
+
+        em.remove(em.find(Student.class, id));
+    }
 }

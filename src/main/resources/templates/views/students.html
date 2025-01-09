@@ -20,6 +20,9 @@
         <td th:text="${student.name}"></td>
         <td th:text="${student.email}"></td>
         <td th:text="${student.phone}"></td>
+        <td> <a th:href="@{/students/showFormForUpdate/{id}(id=${student.id})}" class="btn btn-primary">Update</a>
+             <a th:href="@{/students/deleteStudent/{id}(id=${student.id})}" class="btn btn-danger">Delete</a>
+        </td>
     </tr>
 </table>
 </body>

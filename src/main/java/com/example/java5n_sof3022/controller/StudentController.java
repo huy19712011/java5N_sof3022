@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.ArrayList;
@@ -27,7 +28,7 @@ public class StudentController {
 
         // get data from DB
         List<Student> students = studentService.getAllStudents();
-        students.forEach(student -> System.out.println(student));
+        //students.forEach(student -> System.out.println(student));
 
         // add to model
         model.addAttribute("students", students);
@@ -51,6 +52,16 @@ public class StudentController {
 
         // save student to database
         studentService.saveStudent(student);
+
+        return "redirect:/students";
+    }
+
+    @GetMapping("/students/deleteStudent/{id}")
+
+    public String deleteStudent(@PathVariable("id") long id) {
+
+        // delete student by id
+        studentService.deleteStudentById(id);
 
         return "redirect:/students";
     }
