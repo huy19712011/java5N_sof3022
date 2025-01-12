@@ -5,6 +5,9 @@ import com.example.java5n_sof3022.repository.StudentRepository;
 import com.example.java5n_sof3022.repository.StudentRepositoryV2;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -77,4 +80,8 @@ public class StudentService {
         this.studentRepositoryV2.save(student);
     }
 
+    public Page<Student> findPaginated(int pageNo, int pageSize, String sortField, String sortDir) {
+
+        return studentRepositoryV2.findAll(PageRequest.of(pageNo - 1, pageSize, Sort.by(Sort.Direction.fromString(sortDir), sortField)));
+    }
 }
