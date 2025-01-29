@@ -1,6 +1,7 @@
 package com.example.java5n_sof3022.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.*;
 
 @Entity
 @Table(name = "students")
@@ -13,8 +14,16 @@ public class Student {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Size(min = 3, max = 20, message = "Name must be between 3 and 20 characters")
     private String name;
+
+    @Email(message = "Please enter a valid email address")
+    //@Pattern(regexp = "^(.+)@(.+)$", message = "Invalid email address")
+    @Pattern(regexp = "^(.+)@(fpt\\.edu\\.vn)$", message = "Invalid FPT Poly email")
     private String email;
+
+    @Pattern(regexp = "^(0)\\d{9}$", message = "Invalid phone number")
     private String phone;
 
     public Student() {

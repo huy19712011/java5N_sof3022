@@ -2,11 +2,13 @@ package com.example.java5n_sof3022.controller;
 
 import com.example.java5n_sof3022.entity.Student;
 import com.example.java5n_sof3022.service.StudentService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -48,7 +50,11 @@ public class StudentController {
     }
 
     @PostMapping("/students/saveStudent")
-    public String saveStudent(@ModelAttribute("student") Student student) {
+    public String saveStudent(@Valid @ModelAttribute("student") Student student, BindingResult bindingResult) {
+
+        if (bindingResult.hasErrors()) {
+            return "views/new_student";
+        }
 
         // save student to database
         studentService.saveStudent(student);
@@ -92,7 +98,7 @@ public class StudentController {
                                 @RequestParam("sortField") String sortField,
                                 @RequestParam("sortDir") String sortDir,
                                 Model model) {
-        int pageSize = 1;
+        int pageSize = 10;
 
         Page<Student> page = studentService.findPaginated(pageNo, pageSize, sortField, sortDir);
         List<Student> students = page.getContent();
