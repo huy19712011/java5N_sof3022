@@ -98,7 +98,7 @@ public class StudentController {
                                 @RequestParam("sortField") String sortField,
                                 @RequestParam("sortDir") String sortDir,
                                 Model model) {
-        int pageSize = 10;
+        int pageSize = 1;
 
         Page<Student> page = studentService.findPaginated(pageNo, pageSize, sortField, sortDir);
         List<Student> students = page.getContent();
@@ -106,6 +106,8 @@ public class StudentController {
         model.addAttribute("currentPage", pageNo);
         model.addAttribute("totalPages", page.getTotalPages());
         model.addAttribute("totalItems", page.getTotalElements());
+
+        model.addAttribute("pageSize", pageSize);
 
         model.addAttribute("sortField", sortField);
         model.addAttribute("sortDir", sortDir);
