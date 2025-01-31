@@ -5,3 +5,11 @@ table, th, td {
 .error {
     color: red;
 }
+
+select option {
+    color: black;
+}
+
+select:not(:checked) {
+    color: rgba(33, 37, 41, 0.75);
+}
