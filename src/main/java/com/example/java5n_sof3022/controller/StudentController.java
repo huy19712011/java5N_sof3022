@@ -63,7 +63,6 @@ public class StudentController {
     }
 
     @GetMapping("/students/deleteStudent/{id}")
-
     public String deleteStudent(@PathVariable("id") long id) {
 
         // delete student by id

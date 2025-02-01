@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
@@ -59,16 +60,26 @@ public class ProductController {
             return "views/new_product";
         }
 
+        /*
         System.out.println("Info");
         System.out.println(product.getCategory().getName());
         System.out.println(product.getCategory().getId());
         System.out.println(product.getName());
         System.out.println(product.getPrice());
         System.out.println("End Info");
-
+        */
 
         // save student to database
         productService.saveProduct(product);
+
+        return "redirect:/products";
+    }
+
+    @GetMapping("/products/deleteProduct/{id}")
+    public String deleteProduct(@PathVariable("id") long id) {
+
+        // delete product by id
+        productService.deleteProductById(id);
 
         return "redirect:/products";
     }
