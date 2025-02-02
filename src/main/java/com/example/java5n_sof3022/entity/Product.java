@@ -3,6 +3,8 @@ package com.example.java5n_sof3022.entity;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 
+import java.util.Objects;
+
 @Entity
 @Table(name = "products")
 public class Product {
@@ -24,7 +26,8 @@ public class Product {
     public Product() {
     }
 
-    public Product(String name, Double price, Category category) {
+    public Product(Long id, String name, Double price, Category category) {
+        this.id = id;
         this.name = name;
         this.price = price;
         this.category = category;
@@ -32,6 +35,10 @@ public class Product {
 
     public Long getId() {
         return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -57,6 +64,5 @@ public class Product {
     public void setCategory(Category category) {
         this.category = category;
     }
-
 
 }

@@ -54,9 +54,11 @@ public class ProductController {
     }
 
     @PostMapping("/products/saveProduct")
-    public String saveProduct(@Valid @ModelAttribute("product") Product product, BindingResult bindingResult) {
+    public String saveProduct(@Valid @ModelAttribute("product") Product product, BindingResult bindingResult, Model model) {
 
         if (bindingResult.hasErrors()) {
+
+            model.addAttribute("categories", categoryService.getAllCategories());
             return "views/new_product";
         }
 
@@ -80,6 +82,34 @@ public class ProductController {
 
         // delete product by id
         productService.deleteProductById(id);
+
+        return "redirect:/products";
+    }
+
+    @GetMapping("/products/showFormForUpdate/{id}")
+    public String showFormForUpdate(@PathVariable("id") long id, Model model) {
+
+        // get product from the database
+        Product product = productService.getProductById(id);
+
+        // set product as a model attribute to pre-populate the form
+        model.addAttribute("product", product);
+        model.addAttribute("categories", categoryService.getAllCategories());
+
+        return "views/update_product";
+    }
+
+    @PostMapping("/products/updateProduct")
+    public String updateProduct(@Valid @ModelAttribute("product") Product product, BindingResult bindingResult, Model model) {
+
+        if (bindingResult.hasErrors()) {
+
+            model.addAttribute("categories", categoryService.getAllCategories());
+            return "views/update_product";
+        }
+
+        // update product to database
+        productService.updateProduct(product);
 
         return "redirect:/products";
     }
