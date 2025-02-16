@@ -6,9 +6,11 @@ import com.example.java5n_sof3022.service.UserService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.transaction.annotation.Transactional;
 
 @SpringBootApplication
+@EnableScheduling
 public class Java5NSof3022Application implements CommandLineRunner {
 
     private final UserService userService;
