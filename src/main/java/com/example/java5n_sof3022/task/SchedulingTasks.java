@@ -55,10 +55,10 @@ public class SchedulingTasks {
 
     // 4
     //@Scheduled(cron = "0 * * * * ?") // every minute
-    @Scheduled(cron = "*/10 * * * * ?") // every 10 seconds
-    public void scheduleTaskWithCronExpression() {
-
-        log.info("Cron Task :: Execution Time - {}", dateTimeFormatter.format(LocalDateTime.now()));
-        log.info("Products in DB - {}", productService.getAllProducts().size());
-    }
+    //@Scheduled(cron = "*/10 * * * * ?") // every 10 seconds
+    //public void scheduleTaskWithCronExpression() {
+    //
+    //    log.info("Cron Task :: Execution Time - {}", dateTimeFormatter.format(LocalDateTime.now()));
+    //    log.info("Products in DB - {}", productService.getAllProducts().size());
+    //}
 }
