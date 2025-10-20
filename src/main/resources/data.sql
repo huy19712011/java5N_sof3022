@@ -17,4 +17,10 @@ INSERT INTO products (name, price, category_id) VALUES ('Product 1', 11, 1);
 INSERT INTO products (name, price, category_id) VALUES ('Product 2', 12, 2);
 INSERT INTO products (name, price, category_id) VALUES ('Product 3', 13, 3);
 
+-- Specification
+INSERT INTO employees(name, department, salary) VALUES('Alice', 'IT', 7000.0);
+INSERT INTO employees(name, department, salary) VALUES('Bob', 'HR', 5000.0);
+INSERT INTO employees(name, department, salary) VALUES('Charlie', 'Finance', 9000.0);
+INSERT INTO employees(name, department, salary) VALUES('David', 'IT', 10000.0);
+
 
