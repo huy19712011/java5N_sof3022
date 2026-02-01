@@ -7,6 +7,9 @@ import jakarta.persistence.PersistenceContext;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -50,4 +53,11 @@ public class ProductService {
         return productRepository.findByNameContainingIgnoreCase(keyword);
     }
 
+    public Page<Product> findPaginated(int pageNo, int pageSize, String sortField, String sortDir) {
+
+        return productRepository
+                .findAll(PageRequest.of(pageNo - 1, pageSize,
+                        Sort.by(Sort.Direction.fromString(sortDir), sortField)));
+
+    }
 }

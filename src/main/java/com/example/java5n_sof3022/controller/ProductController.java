@@ -6,13 +6,11 @@ import com.example.java5n_sof3022.service.CategoryService;
 import com.example.java5n_sof3022.service.ProductService;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -30,6 +28,7 @@ public class ProductController {
     @GetMapping("/products")
     public String listProducts(Model model) {
 
+        /*
         // get data from DB
         List<Product> products = productService.getAllProducts();
 
@@ -38,7 +37,9 @@ public class ProductController {
 
         // return view name
         return "views/products";
+        */
 
+        return findPaginated(1, "name", "asc", model);
     }
 
     @GetMapping("/products/showNewProductForm")
@@ -121,6 +122,30 @@ public class ProductController {
             model.addAttribute("keyword", keyword);
             return "views/products";
         }
+
+    @GetMapping("products/page/{pageNo}")
+    public String findPaginated(@PathVariable int pageNo,
+                                @RequestParam("sortField") String sortField,
+                                @RequestParam("sortDir") String sortDir,
+                                Model model) {
+        int pageSize = 1;
+
+        Page<Product> page = productService.findPaginated(pageNo, pageSize, sortField, sortDir);
+        List<Product> products = page.getContent();
+
+        model.addAttribute("currentPage", pageNo);
+        model.addAttribute("totalPages", page.getTotalPages());
+        model.addAttribute("totalItems", page.getTotalElements());
+
+        model.addAttribute("pageSize", pageSize);
+
+        model.addAttribute("sortField", sortField);
+        model.addAttribute("sortDir", sortDir);
+        model.addAttribute("reverseSortDir", sortDir.equals("asc") ? "desc" : "asc");
+
+        model.addAttribute("products", products);
+        return "views/products";
+    }
 
 
 }

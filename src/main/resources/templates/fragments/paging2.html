@@ -1,0 +1,5 @@
+<a th:fragment="paging2(pageNum, label, tooltip)" class="page-link"
+  th:href="@{'/products/' + 'page/' + ${pageNum} + ${sortField!=null ? '?sortField=' + sortField + '&sortDir=' + sortDir : ''}}"
+  th:title="${tooltip}" rel="tooltip">
+  [[${label}]]
+</a>
